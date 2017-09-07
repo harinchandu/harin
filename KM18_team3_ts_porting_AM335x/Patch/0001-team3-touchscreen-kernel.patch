@@ -1,0 +1,88 @@
+From 9034af8a07b7321c391f1ef302d76ac2214d844d Mon Sep 17 00:00:00 2001
+From: mk <mohan10415krishna@gmail.com>
+Date: Sun, 9 Oct 2016 19:56:39 +0530
+Subject: [PATCH] our patch for touchscreen
+
+---
+ arch/arm/boot/dts/am335x-bone-common.dtsi | 58 +++++++++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+
+diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
+index 5270d18..d872b8a 100644
+--- a/arch/arm/boot/dts/am335x-bone-common.dtsi
++++ b/arch/arm/boot/dts/am335x-bone-common.dtsi
+@@ -84,6 +84,27 @@
+ 		>;
+ 	};
+ 
++
++/*own i2c1 enabled ========> */
++
++	i2c1_pins: pinmux_i2c1_pins {
++                pinctrl-single,pins = <
++                        0x158 0x72 /*(PIN_INPUT_PULLUP | MUX_MODE2)    / i2c1_sda.i2c1_sda/ */
++                        0x15c 0x72 /*(PIN_INPUT_PULLUP | MUX_MODE2)    / i2c1_scl.i2c1_scl/ */
++                >;
++        
++	edt_ft5x06_pins:edt_ft5x06_pins {
++		pinctrl-single,pins = <
++		0x1AC 0x37
++		0x154 0x17
++		
++		>;
++	};
++	};
++/*own enabled i2c end here.*/
++
++
++
+ 	i2c2_pins: pinmux_i2c2_pins {
+ 		pinctrl-single,pins = <
+ 			0x178 0x73 /* (SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3) uart1_ctsn.i2c2_sda */
+@@ -295,6 +316,43 @@
+ 	};
+ };
+ 
++
++
++
++
++
++
++/*i2c1 enabled for slave ,selected with address=======>>*/
++
++&i2c1 {
++        pinctrl-names = "default";
++        pinctrl-0 = <&i2c1_pins>;
++
++        status = "okay";
++        clock-frequency = <400000>;
++
++	touch: edt-ft5x06@38 {
++        compatible = "edt,edt-ft5x06";
++        pinctrl-names = "default";
++        pinctrl-0 = <&edt_ft5x06_pins>;
++
++        reg = <0x38>;
++        interrupt-parent = <&gpio1>;
++        interrupts = <17 2>;
++/*      reset-gpios = <&gpio1 22 GPIO_ACTIVE_HIGH>;
++	wakeup-gpios = <&gpio1 >
++        touchscreen-size-x = <800>;
++        touchscreen-size-y = <480>;   */
++        };
++};
++
++/*end here xxxxxxxxxxx*/
++
++
++
++
++
++
+ &i2c2 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+-- 
+1.9.1
+

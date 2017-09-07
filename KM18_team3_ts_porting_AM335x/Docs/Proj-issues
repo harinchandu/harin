@@ -1,0 +1,11 @@
+PROJECT ISSUES IN U-boot
+
+ No issues
+
+project issues in Kernel:
+
+1) drivers/input/touchscreen/edt-ft5x06.c module insertion problem
+	
+   dmesg output: No Platform data,      i2c probe failed error no 
+	
+rectified: modified edt-ft5x06 code

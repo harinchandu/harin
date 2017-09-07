@@ -1,0 +1,33 @@
+Previous Version:kernel-3.14			Current Version: kernel-3.14-ts
+
+HMI uboot Modifications:
+ 
+ADDED 	 : 
+MODIFIED : mux.c 
+	   path: board/ti/am335x/mux.c
+REMOVED	 : 
+
+HMI Kernel-3.14 Modifications:
+
+ADDED	 : 
+
+MODIFIED : am335x-bone-common-dtsi 
+	   path: arch/arm/boot/dts/am335x-bone-common.dtsi
+	   edt-ft5x06.c 
+	   path: drivers/input/touchscreen/edt-ft5x06.c
+	   .config 
+	   path: .config
+	   Modified line : (CONFIG_TOUCHSCREEN_EDT_FT5X06=y)
+
+REMOVED  : 
+
+HMI startup-logo Modifications: 
+
+ADDED 	 : 
+
+MODIFIED : image.h
+	   path: drivers/input/lcd/image.h
+	   boards.cfg
+	   path: uboot/boards.cfg
+	   Modified line : (am335x_evm  arm  armv7  am335x  ti am33xx  am335x_evm:SERIAL1,CONS_INDEX=1)
+REMOVED  :  
